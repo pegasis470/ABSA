@@ -58,20 +58,18 @@ def take_command():
         return query
 print("welcom to ABSA")
 print("host name  =",host)
-print(f"welcome {user} sir")
 say("welcome to absa")
 say(f"host name = {host}")
-say(f"welcome {user} sir")
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 if current_time >= 0 and current_time < 12:
-    print(f"Good Morning {user}")
-    say(f"Good Morning {user}")
+    print(f"Good Morning {user} sir ")
+    say(f"Good Morning {user} sir ")
 elif current_time >= 12 and current_time < 18:
-    print(f"Good Afternon {user}")
-    say(f"Good Afternoon {user}")
+    print(f"Good Afternon {user} sir ")
+    say(f"Good Afternoon {user} sir ")
 else:
-    print(f"Good Evening {user}")
-    say(f"Good Evening {user}")
+    print(f"Good Evening {user} sir ")
+    say(f"Good Evening {user} sir ")
 
 print("how can I be of assistance")
 say("how can i be of assistance")
