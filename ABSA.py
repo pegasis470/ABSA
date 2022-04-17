@@ -270,7 +270,7 @@ while loop_main < 3 :
     elif "open" and "source code" in command:
         say("authorization required")
         auth=take_command()
-        if auth == "sumant here omega 53":
+        if auth == user :
             say("authorization confirmed Opennig source code")
             os.system("gedit ABSA.py")
         else:
