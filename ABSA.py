@@ -16,7 +16,7 @@ try:
     from datetime import datetime as dt
 except ModuleNotFoundError:
     print("some modules are missing installing them now")
-    os.system("pip install wikipedia pyttsx3 SpeechRecognition ")
+    os.system("pip install wikipedia pyttsx3 SpeechRecognition pillow")
 
 
 host = socket.gethostname()
