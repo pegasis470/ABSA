@@ -1,5 +1,5 @@
 # ABSA
-ABSA is a terminal based sysem assistent (audio based system asistent) to do small taskes like opening browers , other installed apps, play music on an inbuilt player or run audio search (also inbuilt) on ubuntu systems only (currently)
+ABSA is an audio based system asistent to do small taskes like opening browers , other installed apps, play music on an inbuilt player or run audio search (also inbuilt) on ubuntu systems only (currently)
 It,just like its developer, is always learning so when an unknown command or query is passed it makes a note of it in improvement file 
 In case of a missing modules it is programed to use os module to install them in your pc 
 To get strated just download the file and run it usnig python3, you can also add " gnome-terminal -e'python3 ABSA.py' " to your keyboard shortcuts for easy opening of the program
