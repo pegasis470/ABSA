@@ -17,9 +17,10 @@ try:
     from PIL import ImageTk, Image
     import subprocess
     from datetime import datetime as dt
+    import pyautogui as pg
 except ModuleNotFoundError:
     print("some modules are missing installing them now")
-    os.system("pip install wikipedia pyttsx3 SpeechRecognition ")
+    os.system("pip install wikipedia pyttsx3 SpeechRecognition pyautogui")
 
 
 host = socket.gethostname()
@@ -35,9 +36,12 @@ def say(text):
     print(text)
     engine.say(text)
     engine.runAndWait()
-def save_and_close():
+def submit():
     global txt
     txt=entry.get()
+    #print(txt)
+    root.destroy()
+    root.quit()
 def take_input():
     global entry
     global root
@@ -46,11 +50,13 @@ def take_input():
     root['background']='#219882'
     label=Label(root,text="sorry i didnt get that please type it",background='#219882')
     entry=Entry(root)
-    button=Button(root,text="submit",background='#219882',command=lambda:[save_and_close(),root.quit(),root.destroy()])
+    button=Button(root,text="submit",background='#219882',command=submit)
     label.pack()
     entry.pack()
     button.pack()
     root.mainloop()
+    global txt
+    print(txt)
     return txt
 def take_command():
     say("Listening....")
@@ -72,11 +78,12 @@ def take_command():
         except sr.UnknownValueError:
             say("Sorry i didnt get that please type it")
             query=take_input()
+            txt=''
         except sr.RequestError:
             say("connection error, please check your internet connectin and try again ")
-            query = 'failed'
-        return query
-
+            window.destroy()
+            sys.exit(1)
+    return query    
 
 def program_checker(program):
     """ taken from https://geekflare.com/learn-python-subprocess/ """
@@ -103,7 +110,7 @@ def music():
         except IndexError:
             say("no music found in defalt directory ")
             say("changing search path to inbuilt music ")
-            path=os.path.join(os.getcwd(),"ABSA","music")
+            path=os.path.join(os.getcwd(),"music")
             say("succes")
             mp3_files=[]
             all_files=os.listdir(path)
@@ -166,8 +173,24 @@ def search():
                 else:
                     query=query2
                     continue
-
-
+def reframe_for_god_mode(txt):
+        while True:
+            if " " in txt:
+               txt="".join(txt.split(" "))
+            elif "space" in txt:
+                txt=txt.replace("space"," ")
+                break
+            elif " " not in txt and "space" not in txt:
+               break
+        return txt.lower()
+def god_mode():
+     say("Initializing god mode....")
+     say("say a command line argument")
+     argument=reframe_for_god_mode(take_command())
+     os.system(f"gnome-terminal")
+     time.sleep(2)
+     pg.write(argument)
+     pg.press("Enter")
 def  main():
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             if current_time >= 0 and current_time < 12:
@@ -331,19 +354,25 @@ def  main():
                     path_to_improvement=os.path.join(os.getcwd(), "improvement.txt")
                     file = open(path_to_improvement , "r")
                     say("here is a list of unknown commands recived")
-                    print(file.read())
+                    for line in file.readlines():
+                        say(line.strip("\n"))
                     time.sleep(5)
                     file.close()
-                elif command == 'failed':
-                    sys.exit()
+                elif "God mode" in command :
+                    god_mode()
                 else:
                 ## incase of unclear or invalid command ##
                     say(f"{host} cannot understand. making a note in improvement file")
                     path_to_improvement=os.path.join(os.getcwd(), "improvement.txt")
-                    improvment = open(path_to_improvement , "a+")
+                    try:
+                        improvment = open(path_to_improvement , "r")
+                    except FileNotFoundError:
+                        file = open(path_to_improvement , "w")
+                        improvement=open(path_to_improvement , "r")
                     if f"{command} \n" in improvment.readlines():
                         say("query already in improvement, It will me added soon!!")
                     else:
+                        improvment = open(path_to_improvement , "a+")
                         improvment.write(f"{command} \n")
                     improvment.close()
 
