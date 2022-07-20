@@ -47,10 +47,10 @@ def take_input():
     global root
     root = Tk()
     root.title("Manual input")
-    root['background']='#219882'
-    label=Label(root,text="sorry i didnt get that please type it",background='#219882')
+    root['background']='#00ffff'
+    label=Label(root,text="sorry i didnt get that please type it",background='#00ffff')
     entry=Entry(root)
-    button=Button(root,text="submit",background='#219882',command=submit)
+    button=Button(root,text="submit",background='#00ffff',command=submit)
     label.pack()
     entry.pack()
     button.pack()
