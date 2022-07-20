@@ -20,7 +20,7 @@ try:
     import pyautogui as pg
 except ModuleNotFoundError:
     print("some modules are missing installing them now")
-    os.system("pip install wikipedia pyttsx3 SpeechRecognition pyautogui")
+    os.system("pip install wikipedia pyttsx3 SpeechRecognition ")
 
 
 host = socket.gethostname()
@@ -45,15 +45,19 @@ def submit():
 def take_input():
     global entry
     global root
-    root = Tk()
+    root = Toplevel()
+    #root.geometry("600x400")
     root.title("Manual input")
-    root['background']='#00ffff'
-    label=Label(root,text="sorry i didnt get that please type it",background='#00ffff')
+    path=os.path.join(os.getcwd(),"icons","background.png")
+    bg=PhotoImage(file=path)
+    canvas1 = Canvas(root,width = 600,height = 270)
+    canvas1.pack()
+    canvas1.create_image(0,0,image= bg, anchor = "nw")
+    canvas1.create_text(300,100,text="sorry i didnt get that please type it",fill="white")
     entry=Entry(root)
-    button=Button(root,text="submit",background='#00ffff',command=submit)
-    label.pack()
-    entry.pack()
-    button.pack()
+    button=Button(root,text="submit",command=submit)
+    entry_canvas = canvas1.create_window( 125, 150,anchor = "nw",window = entry)
+    button_canvas = canvas1.create_window( 230, 200,anchor = "nw",window = button)
     root.mainloop()
     global txt
     print(txt)
@@ -360,6 +364,9 @@ def  main():
                     file.close()
                 elif "God mode" in command :
                     god_mode()
+                elif "test" in command or "Test" in command:
+                    say("assuming test is complete")
+                    sys.exit(0)
                 else:
                 ## incase of unclear or invalid command ##
                     say(f"{host} cannot understand. making a note in improvement file")
