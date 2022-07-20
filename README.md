@@ -6,4 +6,5 @@ To get strated just download the file and run it usnig python3, you can also add
 
 NOTE Any suggestions are always open you can contact me directly on my snap chat (username -> sdmak_03) or on my instagram (https://www.instagram.com/sdmak._.03/) 
 
-![main](https://user-images.githubusercontent.com/101937683/179905153-f0499201-9ed9-4579-9c7d-f580d59e4219.png)
+
+![main](https://user-images.githubusercontent.com/101937683/180070824-f1fa8441-ebe8-4d96-9ddd-f75da34bbedf.png)
