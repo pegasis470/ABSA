@@ -293,20 +293,6 @@ def  main():
                         os.system("gnome-terminal -e 'whatsie'")
                     else:
                         say("sorry whatsie whatsapp client is not installed")
-                elif "open droidcam" in command :
-                    say("openning droidcam")
-                    check=program_checker("droidcam")
-                    if check == True:
-                        os.system("gnome-terminal -e 'droidcam'")
-                    else:
-                        say("sorry droidcam is not installed")
-                elif "open droidcam client" in command:
-                    say("openning droidcam")
-                    check=program_checker("droidcam")
-                    if check == True:
-                        os.system("gnome-terminal -e 'droidcam-cli 192.168.29.175 4747'")
-                    else:
-                        say("Sorry droidcam is not installed")
                 elif "open jupyter lab" in command:
                     say("openning jupyterlab")
                     check=program_checker("jupyter-lab")
@@ -314,9 +300,6 @@ def  main():
                         os.system("gnome-terminal -e 'jupyter-lab'")
                     else:
                         say("sorry jupyter lab is not installed ")
-                elif command == "open source code in edit":
-                    say("opening source code with vim")
-                    os.system("vim ABSA.py")
                 elif "open terminal" in  command:
                     say("openning new terminal window")
                     os.system("gnome-terminal")
@@ -342,13 +325,8 @@ def  main():
                     music_window.mainloop()
 
                 elif "open" and "source code" in command:
-                    say("authorization required")
-                    auth=take_command()
-                    if auth == user :
-                        say("authorization confirmed Opennig source code")
-                        os.system("gedit ABSA.py")
-                    else:
-                        say("authorization failed")
+                    say("openning source code")
+                    os.system("gnome-terminal -e 'https://github.com/pegasis470/ABSA/blob/main/ABSA.py'")
                 elif "open" and "author profile" in command:
                     say("opening sumant dhere's profile")
                     os.system("gnome-terminal -e 'sensible-browser https://www.facebook.com/sumant.dhere.1'")
@@ -364,9 +342,6 @@ def  main():
                     file.close()
                 elif "God mode" in command :
                     god_mode()
-                elif "test" in command or "Test" in command:
-                    say("assuming test is complete")
-                    sys.exit(0)
                 else:
                 ## incase of unclear or invalid command ##
                     say(f"{host} cannot understand. making a note in improvement file")
@@ -375,6 +350,7 @@ def  main():
                         improvment = open(path_to_improvement , "r")
                     except FileNotFoundError:
                         file = open(path_to_improvement , "w")
+                        file.close()
                         improvement=open(path_to_improvement , "r")
                     if f"{command} \n" in improvment.readlines():
                         say("query already in improvement, It will me added soon!!")
